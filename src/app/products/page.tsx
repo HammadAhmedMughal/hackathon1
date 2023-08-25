@@ -1,12 +1,6 @@
-export const dynamic = true;
-export const revalidate = 0;
-import ProductCart from "@/app/ProductCart";
 import { client } from "@/lib/sanityClient";
-import { Item } from "@radix-ui/react-select";
-import { log } from "console";
 import { Image as IImage } from "sanity";
 import ProductCard from "@/components/ProductCard";
-import { StaticImageData } from "next/image";
 
 export const getProductData = async () => {
   const res = await client.fetch(`*[_type == "product"]{
@@ -18,9 +12,8 @@ export const getProductData = async () => {
       category -> {
         name
       }
-  }`,{next:{revalidate:1}});
-  return res;
-  
+  }`);
+  return res as Iproduct[]; 
 };
 
 export interface Iproduct {
@@ -35,7 +28,9 @@ export interface Iproduct {
 }
 
 export default async function Data() {
+  console.log("🚀 ~ file: page.tsx:31 ~ Data ~ Data:before", Data)
   const data: Iproduct[] = await getProductData();
+  console.log("🚀 ~ file: page.tsx:31 ~ Data ~ Data:after", Data)
   
 
   return (
@@ -54,20 +49,3 @@ export default async function Data() {
   )
 
 }
-
-// const AllProducts = () => {
-//   return (
-//     <div className="flex flex-wrap justify-start mt-16 mb-16">
-//       {data.map((product) => (
-//         <ProductCard
-//           key={product.id}
-//           title={product.name}
-//           price={product.price}
-//           image={product.image as StaticImageData}
-//           category={product.cat}
-//           id={product.id}
-//         />
-//       ))}
-//     </div>
-//   );
-// };

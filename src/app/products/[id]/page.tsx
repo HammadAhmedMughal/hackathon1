@@ -18,7 +18,9 @@ import ProductDetail from "@/components/ProductDetail";
 
 
 export async function GetData(id: number | string) {
-  const data2: Iproduct[] = await getProductData();
+  console.log("🚀 ~ file: page.tsx:21 ~ GetData ~ GetData:before", GetData)
+  const data2 = await getProductData() as Iproduct[];
+  console.log("🚀 ~ file: page.tsx:21 ~ GetData ~ GetData:after", GetData)
 
 
   return (
