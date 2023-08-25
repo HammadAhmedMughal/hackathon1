@@ -1,9 +1,5 @@
-import { urlForImage } from "sanity/lib/image";
 import { getProductData } from "@/app/products/page";
 import  {Image as IImages} from 'sanity';
-import Image from "next/image";
-import ProductDetail from "@/components/ProductDetail";
-import { log } from "console";
 import ProductCard from "@/components/ProductCard";
 
 
@@ -19,12 +15,12 @@ import ProductCard from "@/components/ProductCard";
 }
 
 
-export async function GetData(slug:string) {
+export async function GetData(page:any) {
   const data2: Iproduct[] = await getProductData();
 
 
   return (
- data2.filter((pro)=>pro.category.name == slug)
+ data2.filter((pro)=>pro.category.name == page)
  
   )
 
@@ -32,8 +28,9 @@ export async function GetData(slug:string) {
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const result =await GetData(params.slug);
-  console.log("this is a cat value"+ params.slug);
+  const page = params.slug;
+  const result =await GetData(page);
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-10">
