@@ -1,7 +1,18 @@
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
-import { Iproduct, getProductData } from "@/app/products/page";
+import  {Image as IImages} from 'sanity';
 
+import { getProductData } from "@/app/products/page";
+interface Iproduct {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: IImages;
+  category: {
+    name: string;
+  };
+}
 
 const ProductList  = async () => {
   const result:Iproduct[] = await getProductData();

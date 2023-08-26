@@ -16,23 +16,21 @@ import ProductDetail from "@/components/ProductDetail";
   };
 }
 
-
-export async function GetData(id: number | string) {
-  console.log("🚀 ~ file: page.tsx:21 ~ GetData ~ GetData:before", GetData)
-  const data2 = await getProductData() as Iproduct[];
-  console.log("🚀 ~ file: page.tsx:21 ~ GetData ~ GetData:after", GetData)
-
-
-  return (
- data2.filter((pro)=>pro._id == id)
- 
-  )
-
+const AllProducts  = async (id:number | string) => {
+    const result:Iproduct[] = await getProductData();
+    return (
+    result.filter((pro)=>pro._id == id)
+     )
 }
 
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const result =await GetData(params.id);
+type categoryParams = {
+    params: {
+      id: number;
+    };
+  };
+export default async function Page(params:categoryParams) {
+  const result =await AllProducts(params.params.id);
   return (
     <div className="flex flex-wrap justify-start mt-16 mb-16">
       {result.map((product) => (

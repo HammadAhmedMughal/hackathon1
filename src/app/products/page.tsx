@@ -13,29 +13,28 @@ export const getProductData = async () => {
         name
       }
   }`);
-  return res as Iproduct[]; 
+  return res; 
 };
 
-export interface Iproduct {
-  _id: string;
-  title: string;
-  description: string;
-  price: number;
-  image: IImage;
-  category: {
-    name: string;
-  };
-}
+// export interface Iproduct {
+//   _id: string;
+//   title: string;
+//   description: string;
+//   price: number;
+//   image: IImage;
+//   category: {
+//     name: string;
+//   };
+// }
 
 export default async function Data() {
-  console.log("🚀 ~ file: page.tsx:31 ~ Data ~ Data:before", Data)
-  const data: Iproduct[] = await getProductData();
-  console.log("🚀 ~ file: page.tsx:31 ~ Data ~ Data:after", Data)
-  
+
+  const data:any = await getProductData();
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-10">
-    {data.map((product) => (
+    {data.map((product:any) => (
       <ProductCard
         key={product._id}
         title={product.title}
