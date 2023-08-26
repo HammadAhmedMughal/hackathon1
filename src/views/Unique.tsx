@@ -1,6 +1,7 @@
 import Image from "next/image";
 import feature from "/public/feature.webp";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Unique = () => {
   return (
@@ -66,7 +67,7 @@ const Unique = () => {
                   The Natural color is the actual natural color of the fiber,
                   undyed and 100% traceable.
                 </p>
-                <Button>See All Products</Button>
+               <Link href={"/products"}> <Button>See All Products</Button></Link>
               </div>
             </div>
           </div>

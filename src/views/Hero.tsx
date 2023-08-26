@@ -7,6 +7,7 @@ import logo_1 from "/public/logo-1.webp"
 import logo_2 from "/public/logo-2.webp"
 import logo_3 from "/public/logo-3.webp"
 import logo_4 from "/public/logo-4.webp"
+import Link  from "next/link";
 
 
 const Hero = () => {
@@ -25,9 +26,10 @@ const Hero = () => {
           Anyone can beat you but no one can beat your outfit as long as you
           wear Dine outfits.
         </p>
+        <Link href={"/products"}>
         <Button className="rounded-none h-16 px-6 mt-3">
           <BsCart2 /> <p className="px-2">Start Shopping</p>
-        </Button>
+        </Button></Link>
 <div className ="grid grid-cols-4 gap-4 pt-10">
 <div><Image src={logo_1} alt={"logo-1"}/></div>
 <div><Image src={logo_2} alt={"logo-2"}/></div>
